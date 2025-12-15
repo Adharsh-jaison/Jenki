@@ -1,5 +1,5 @@
 
-def calculate_average(a, b):
+def calculate_average(a, c):
     
     result = (a + c) / 2 
     return result
