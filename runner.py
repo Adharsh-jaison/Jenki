@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-files = ["hello.py", "dummy.py"]
+files = ["hello.py", "dummy.py", "file3.py"]
 failed_files = {}
 
 print("==========================")
@@ -9,16 +9,18 @@ print("STARTING DETAILED RUNNER")
 print("==========================\n")
 
 for filename in files:
-    print(f"▶️ Running {filename}...")
+    # ഇമോജി മാറ്റി '->' എന്നാക്കി
+    print(f"-> Running {filename}...")
     
     result = subprocess.run(["python", filename], capture_output=True, text=True)
     
     if result.returncode == 0:
-        print(f"✅ {filename} Passed!")
-
+        # ഇമോജി മാറ്റി '[PASS]' എന്നാക്കി
+        print(f"[PASS] {filename} Passed!")
         print(f"Output:\n{result.stdout}\n")
     else:
-        print(f"❌ {filename} FAILED!")
+        # ഇമോജി മാറ്റി '[FAIL]' എന്നാക്കി
+        print(f"[FAIL] {filename} FAILED!")
         print(f"Error Details:\n{result.stderr}\n")
         failed_files[filename] = result.stderr
 
