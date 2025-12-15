@@ -1,0 +1,36 @@
+import subprocess
+import sys
+
+files = ["hello.py", "dummy.py"]
+failed_files = {}
+
+print("==========================")
+print("STARTING DETAILED RUNNER")
+print("==========================\n")
+
+for filename in files:
+    print(f"▶️ Running {filename}...")
+    
+    result = subprocess.run(["python", filename], capture_output=True, text=True)
+    
+    if result.returncode == 0:
+        print(f"✅ {filename} Passed!")
+
+        print(f"Output:\n{result.stdout}\n")
+    else:
+        print(f"❌ {filename} FAILED!")
+        print(f"Error Details:\n{result.stderr}\n")
+        failed_files[filename] = result.stderr
+
+print("==========================")
+print("SUMMARY")
+print("==========================")
+
+if failed_files:
+    print(f"The following files failed:")
+    for file, error in failed_files.items():
+        print(f"- {file}: See error above")
+    sys.exit(1)
+else:
+    print("All files passed successfully!")
+    sys.exit(0)
