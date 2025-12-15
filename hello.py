@@ -11,7 +11,7 @@ num1 = 10
 num2 = 20
 
 def sumz(a,b):
-    sum = a+z
+    sum = a+b
     return sum
 
 summ = sumz(num1, num2)
